@@ -7,7 +7,8 @@ CREATE TABLE attendance_statuses (
   Attendance_Status_Name VARCHAR(50) NOT NULL,
   PRIMARY KEY (Attendance_Status_ID),
   UNIQUE INDEX Attendance_Status_ID (Attendance_Status_ID)
-);
+)
+ENGINE = INNODB;
 
 
 DROP TABLE IF EXISTS employee;
@@ -20,7 +21,8 @@ CREATE TABLE employee (
   PRIMARY KEY (Employee_ID),
   UNIQUE INDEX email (email),
   UNIQUE INDEX Employee_ID (Employee_ID)
-);
+)
+ENGINE = INNODB;
 
 DROP TABLE IF EXISTS meeting_departments;
 CREATE TABLE meeting_departments (
@@ -28,7 +30,8 @@ CREATE TABLE meeting_departments (
   Meeting_Dept_Name VARCHAR(50) NOT NULL,
   PRIMARY KEY (Meeting_Dept_ID),
   UNIQUE INDEX Meeting_Status_ID (Meeting_Dept_ID)
-);
+)
+ENGINE = INNODB;
 
 DROP TABLE IF EXISTS response_types;
 CREATE TABLE response_types (
@@ -36,7 +39,8 @@ CREATE TABLE response_types (
   Response_Name VARCHAR(50) NOT NULL,
   PRIMARY KEY (Response_Type_ID),
   UNIQUE INDEX Response_Type_ID (Response_Type_ID)
-);
+)
+ENGINE = INNODB;
 
 DROP TABLE IF EXISTS rooms;
 CREATE TABLE rooms (
@@ -45,7 +49,8 @@ CREATE TABLE rooms (
   Room_Num VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (Room_ID),
   UNIQUE INDEX Room_ID (Room_ID)
-);
+)
+ENGINE = INNODB;
 
 DROP TABLE IF EXISTS meetings;
 CREATE TABLE meetings (
@@ -64,7 +69,8 @@ CREATE TABLE meetings (
     REFERENCES meeting_departments(Meeting_Dept_ID) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT FK_meetings_rooms_Room_ID FOREIGN KEY (Meeting_Room_ID)
     REFERENCES rooms(Room_ID) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)
+ENGINE = INNODB;
 
 DROP TABLE IF EXISTS attendance;
 CREATE TABLE attendance (
@@ -84,7 +90,8 @@ CREATE TABLE attendance (
     REFERENCES meetings(Meeting_ID) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT FK_attendance_response_types_Response_Type_ID FOREIGN KEY (Response_Type_ID)
     REFERENCES response_types(Response_Type_ID) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)
+ENGINE = INNODB;
 
 /* end table creation */
 
