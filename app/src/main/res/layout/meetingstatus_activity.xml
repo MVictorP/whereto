@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.matthew.project15.MeetingStatus">
+
+
+    <ScrollView
+        android:id="@+id/accept_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/meet_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtFullNameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity = "start"
+                android:layout_weight="1"
+                android:layout_marginBottom="8dp"
+                android:textSize = "18sp"
+                android:text="Welcome " />
+
+            <TextView
+                android:id="@+id/txtEmailUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Your Email: " />
+
+            <TextView
+                android:id="@+id/txtNameMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Name: " />
+
+            <TextView
+                android:id="@+id/txtDescMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Description: " />
+
+            <TextView
+                android:id="@+id/txtDateMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Date: " />
+
+            <TextView
+                android:id="@+id/txtTimeMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Time: " />
+
+            <TextView
+                android:id="@+id/txtDurationMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Duration: " />
+
+            <TextView
+                android:id="@+id/txtDeptMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Department: " />
+
+            <TextView
+                android:id="@+id/txtRoomMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Room: " />
+
+            <TextView
+                android:id="@+id/txtOrganizerMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:text="Meeting Organizer: " />
+
+
+            <Spinner
+                android:id="@+id/respSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_weight="1"
+               />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+
+                android:elevation="2dp"
+                android:text="Submit" />
+
+            <Button
+                android:id="@+id/submitlogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/logout" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

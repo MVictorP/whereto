@@ -2,9 +2,12 @@ package com.example.matthew.project15;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -26,27 +29,42 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextInputEditText email, password;
-    private RequestQueue requestQueue;
-    private static final String URL = "http://192.168.2.6/androidphp/user_control.php";
-    private StringRequest request;
+    TextInputEditText TextInputEmail, TextInputPassword;
+    RequestQueue requestQueue;
+    String checkUserUrl = "http://192.168.2.6/androidphp/user_control.php";
+    StringRequest stringRequest;
+    Button btnSignIn;
+    SharedPreferences sharedUserEmail;
+    SharedPreferences.Editor editorUserID;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = (TextInputEditText) findViewById(R.id.email);
-        password = (TextInputEditText) findViewById(R.id.password);
-        Button sign_in_register = (Button) findViewById(R.id.email_sign_in_button);
+        TextInputEmail = (TextInputEditText) findViewById(R.id.loginemail);
+        TextInputPassword = (TextInputEditText) findViewById(R.id.password);
+        btnSignIn = (Button) findViewById(R.id.email_sign_in_button);
+        sharedUserEmail = PreferenceManager.getDefaultSharedPreferences(this);
 
         requestQueue = Volley.newRequestQueue(this);
 
-        sign_in_register.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String checkEmail = TextInputEmail.getText().toString();
+                String checkPassword = TextInputPassword.getText().toString();
+                if(TextUtils.isEmpty(checkEmail)) {
+                    TextInputEmail.setError("Enter your Email");
 
-                request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                }
+                if(TextUtils.isEmpty(checkPassword)) {
+                    TextInputPassword.setError("Enter your Password");
+
+                }
+
+                stringRequest = new StringRequest(Request.Method.POST, checkUserUrl, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -73,16 +91,23 @@ public class LoginActivity extends AppCompatActivity {
                 }) {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String, String> hashMap = new HashMap<>();
-                        hashMap.put("email", email.getText().toString());
-                        hashMap.put("password", password.getText().toString());
+                        HashMap<String, String> parameters = new HashMap<>();
+                        parameters.put("email", TextInputEmail.getText().toString());
+                        parameters.put("password", TextInputPassword.getText().toString());
 
-                        return hashMap;
+                        editorUserID = sharedUserEmail.edit();
+                        editorUserID.putString("shareduseremail", TextInputEmail.getText().toString());
+                        editorUserID.apply();
+
+                        return parameters;
                     }
                 };
 
-                requestQueue.add(request);
+                requestQueue.add(stringRequest);
+
             }
         });
+
     }
+
 }
