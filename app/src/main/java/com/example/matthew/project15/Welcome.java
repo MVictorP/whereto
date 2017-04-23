@@ -36,8 +36,10 @@ public class Welcome extends AppCompatActivity {
     SharedPreferences sharedUserID;
     SharedPreferences.Editor editorUserID;
     String strUserEmail;
-    String getEmpUrl = "http://192.168.2.6/androidphp/getEmployees.php";
-    String getInvUrl = "http://192.168.2.6/androidphp/getInvitations.php";
+    //String getEmpUrl = "http://192.168.2.6/androidphp/getEmployees.php";
+    //String getInvUrl = "http://192.168.2.6/androidphp/getInvitations.php";
+    String getEmpUrl = "http://thewhereto.com/getEmployees.php";
+    String getInvUrl = "http://thewhereto.com/getInvitations.php";
     String strJsonEmail, strJsonMeet;
     Spinner meetsSpinner;
 

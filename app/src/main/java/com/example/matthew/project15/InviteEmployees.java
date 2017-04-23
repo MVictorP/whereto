@@ -35,8 +35,10 @@ public class InviteEmployees extends AppCompatActivity {
     ListView empListView;
     Button btnInviteEmployees;
     RequestQueue requestQueue;
-    String getEmpUrl = "http://192.168.2.6/androidphp/getEmployees.php";
-    String insertAttendUrl = "http://192.168.2.6/androidphp/insertAttendance.php";
+    //String getEmpUrl = "http://192.168.2.6/androidphp/getEmployees.php";
+    //String insertAttendUrl = "http://192.168.2.6/androidphp/insertAttendance.php";
+    String getEmpUrl = "http://thewhereto.com/getEmployees.php";
+    String insertAttendUrl = "http://thewhereto.com/insertAttendance.php";
     TextView meetTextView;
     SharedPreferences sharedMeetID;
     String strMeetId, strSuccess;

@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText TextInputEmail, TextInputPassword;
     RequestQueue requestQueue;
-    String checkUserUrl = "http://192.168.2.6/androidphp/user_control.php";
+    //String checkUserUrl = "http://192.168.2.6/androidphp/user_control.php";
+    String checkUserUrl = "http://thewhereto.com/user_control.php";
     StringRequest stringRequest;
     Button btnSignIn;
     SharedPreferences sharedUserEmail;
