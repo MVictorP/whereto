@@ -1,6 +1,6 @@
 <?php
 
-define('hostname', 'localhost');
-define('user', 'root');
-define('password', '');
-define('db_name', 'whereto');
+define('hostname', 'thewhereto.com');
+define('user', 'thewher7_admin');
+define('password', 'whereto');
+define('db_name', 'thewher7_whereto');

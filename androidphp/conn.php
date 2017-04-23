@@ -1,8 +1,8 @@
 <?php
- define('HOST','localhost');
- define('USER','root');
- define('PASS','');
- define('DB','whereto');
+ define('HOST','thewhereto.com');
+ define('USER','thewher7_admin');
+ define('PASS','whereto');
+ define('DB','thewher7_whereto');
  
  $connect = mysqli_connect(HOST, USER, PASS, DB);
  
