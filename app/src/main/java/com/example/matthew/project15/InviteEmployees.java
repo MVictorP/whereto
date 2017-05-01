@@ -34,6 +34,7 @@ public class InviteEmployees extends AppCompatActivity {
 
     ListView empListView;
     Button btnInviteEmployees;
+    // so this class can remember the previous calls in the case of a destroyed activity
     RequestQueue requestQueue;
     //String getEmpUrl = "http://192.168.2.6/androidphp/getEmployees.php";
     //String insertAttendUrl = "http://192.168.2.6/androidphp/insertAttendance.php";
@@ -56,6 +57,7 @@ public class InviteEmployees extends AppCompatActivity {
 
         sharedMeetID = PreferenceManager.getDefaultSharedPreferences(this);
         strMeetId = sharedMeetID.getString("sharedmeetid", "");
+        //for toast
         strSuccess = "Success";
 
         meetTextView = (TextView)findViewById(R.id.empMeetId);
@@ -65,28 +67,37 @@ public class InviteEmployees extends AppCompatActivity {
         btnInviteEmployees = (Button) findViewById(R.id.btnInviteEmps);
 
 
+
         JsonObjectRequest jsonEmployeeObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 getEmpUrl, null, new Response.Listener<JSONObject>() {
 
             @Override
+            // if the request is successful we can continue
             public void onResponse(JSONObject response) {
                 try {
+                    // check the json object for an array named "employee"
                     JSONArray jsonEmpArray = response.getJSONArray("employee");
-
+                    // is it empty, if not continue
                     for (int i = 0; i < jsonEmpArray.length(); i++) {
 
+                        // separate each row into individual json objects
                         JSONObject jsonEmpObject = jsonEmpArray.getJSONObject(i);
+                        // extract the first name and last name, combine them and create a new array of first and last names
                         ArrEmpNames.add(jsonEmpObject.optString("UsrFirst_Name") + " " + jsonEmpObject.optString("UsrLast_Name"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 empListView = (ListView) findViewById(R.id.list);
+
+                // modify the array of employee names to enable multiple choice
                 ArrayAdapter<String> adapter
                         = new ArrayAdapter<>(InviteEmployees.this,
                         android.R.layout.simple_list_item_multiple_choice,
                         ArrEmpNames);
+                // enable multiple choice mode for the list that will be seen
                 empListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                // send the array of multiple choice employee names to what will be seen
                 empListView.setAdapter(adapter);
 
             }
@@ -107,7 +118,7 @@ public class InviteEmployees extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                long itEmp; //todo: init this with class
+                long itEmp;
                 intCntChoice = empListView.getCount();
 
                 if(empListView.getCheckedItemCount() == 0) {
@@ -121,16 +132,16 @@ public class InviteEmployees extends AppCompatActivity {
                 for (int i = 0; i < intCntChoice; i++) {
                     if (sparseBooleanArray.get(i)) {
 
-                        itEmp = empListView.getItemIdAtPosition(i + 1); //todo: figure out why...
+                        itEmp = empListView.getItemIdAtPosition(i + 1);
 
-                        final long finalItEmp = itEmp; //todo: it wants me to reassign itEmp here...
+                        final long finalItEmp = itEmp;
                         StringRequest request = new StringRequest(Request.Method.POST, insertAttendUrl, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     if (jsonObject.names().get(0).equals("success")) {
-                                        Toast.makeText(getApplicationContext(), jsonObject.getString("success"), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(), Welcome.class));
                                     }
                                     else {
