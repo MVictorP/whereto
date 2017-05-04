@@ -1,3 +1,5 @@
+
+
 package com.example.matthew.project15;
 
 import android.content.Intent;
@@ -34,7 +36,7 @@ public class InviteEmployees extends AppCompatActivity {
 
     ListView empListView;
     Button btnInviteEmployees;
-    // so this class can remember the previous calls in the case of a destroyed activity
+    // allows this class to remember the previous calls in the case of a destroyed activity
     RequestQueue requestQueue;
     //String getEmpUrl = "http://192.168.2.6/androidphp/getEmployees.php";
     //String insertAttendUrl = "http://192.168.2.6/androidphp/insertAttendance.php";
