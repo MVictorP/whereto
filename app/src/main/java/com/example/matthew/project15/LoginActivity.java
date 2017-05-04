@@ -1,3 +1,5 @@
+// Description: This is the page where the employee would log into the system.
+
 package com.example.matthew.project15;
 
 
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     TextInputPassword.setError("Enter your Password");
 
                 }
-
+                // verify the email and password
                 stringRequest = new StringRequest(Request.Method.POST, checkUserUrl, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -73,8 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (jsonObject.names().get(0).equals("success")) {
                                 Toast.makeText(getApplicationContext(), "SUCCESS " + jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), Welcome.class));
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(getApplicationContext(), "Error: " + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
                             }
 

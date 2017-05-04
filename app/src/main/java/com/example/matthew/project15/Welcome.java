@@ -1,3 +1,8 @@
+// Description: This page is where a user is taken after they log in. It displays a button that
+// will take the user to create a meeting. There is also a drop down menu that will show the
+// meetings the user has been invited to attend. If they select one of those meetings and "submit"
+// they would be taken to the details of that meeting.
+
 package com.example.matthew.project15;
 
 import android.content.Intent;
@@ -74,7 +79,7 @@ public class Welcome extends AppCompatActivity {
 
 
 
-
+        // use the JSON array for employees to get the details of the employee that logged in
         JsonObjectRequest jsonEmployeeObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 getEmpUrl, null, new Response.Listener<JSONObject>() {
 
@@ -108,7 +113,8 @@ public class Welcome extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+                // populate the dropdown menu of meetings with the meetings they have
+                // been invited to attend
                 JsonObjectRequest GetMeetsObjectRequest = new JsonObjectRequest(Request.Method.POST,
                         getInvUrl, null, new Response.Listener<JSONObject>() {
 

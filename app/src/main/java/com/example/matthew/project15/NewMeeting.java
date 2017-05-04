@@ -1,3 +1,6 @@
+// Description: This page is where a user would create a new meeting. After the user correctly
+// fills in the required fields the details entered in those fields are uploaded to the database.
+
 package com.example.matthew.project15;
 
 import android.content.Intent;
@@ -80,6 +83,8 @@ public class NewMeeting extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
 
+        // Get the departments from the departments table in the database. Copy into a JSON array
+        // and use the results to populate a drop down menu of the departments
         JsonObjectRequest jsonDeptObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 getDeptUrl, null, new Response.Listener<JSONObject>() {
 
@@ -112,7 +117,8 @@ public class NewMeeting extends AppCompatActivity {
 
 
 
-
+        // Get the rooms from the rooms table in the database. Copy into a JSON array
+        // and use the results to populate a drop down menu of all the rooms
         JsonObjectRequest jsonRoomObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 getRoomUrl, null, new Response.Listener<JSONObject>() {
 
@@ -144,7 +150,8 @@ public class NewMeeting extends AppCompatActivity {
 
 
 
-
+        // Get the employees from the employees table in the database. Copy into a JSON array
+        // and use the results to populate a drop down menu of all the company employees
         JsonObjectRequest jsonEmployeeObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 getEmpUrl, null, new Response.Listener<JSONObject>() {
 
@@ -176,7 +183,9 @@ public class NewMeeting extends AppCompatActivity {
 
 
 
-
+        // Get the meetings from the meetings table in the database. Copy into a JSON array
+        // and use the results to a shared variable and to show what the meeting number is
+        // at the top of the page.
         JsonObjectRequest jsonMeetObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 getMeetUrl, null, new Response.Listener<JSONObject>() {
 
@@ -221,6 +230,7 @@ public class NewMeeting extends AppCompatActivity {
         btnCreate_meeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // gather all the information the user has entered/selected
                 intMeet_id = deptSpinner.getSelectedItemPosition();
                 intRoom_id = roomSpinner.getSelectedItemPosition() ;
                 intEmp_id = empSpinner.getSelectedItemPosition();
@@ -231,6 +241,7 @@ public class NewMeeting extends AppCompatActivity {
                 String checkTime = TextInputMeetingTime.getText().toString();
                 String checkDuration = TextInputMeetingDuration.getText().toString();
 
+                // lines 240-272 are used to validate input
                 if(TextUtils.isEmpty(checkName)) {
                     TextInputMeetingName.setError("Missing a name");
                     return;
@@ -264,7 +275,7 @@ public class NewMeeting extends AppCompatActivity {
                     return;
                 }
 
-
+                // Send the results of what the user has selected to the database.
                 StringRequest request = new StringRequest(Request.Method.POST, insertMeetUrl, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

@@ -1,3 +1,7 @@
+// Description: This page is where a user is taken after they select a meeting from the Welcome
+// page. It displays all the details of the selected meeting. There is also a menu where you choose
+// to accept or decline the meeting. The results are saved to the database.
+
 package com.example.matthew.project15;
 
 import android.content.Intent;
@@ -140,7 +144,8 @@ public class MeetingStatus extends AppCompatActivity {
 
 
 
-
+        // gather all the information about the selected meeting from the database (meetings table)
+        // and populate the details of the meeting
         JsonObjectRequest findMeetObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 getMeetUrl, null, new Response.Listener<JSONObject>() {
 
@@ -185,7 +190,7 @@ public class MeetingStatus extends AppCompatActivity {
 
 
 
-
+                // find the room number in the rooms table using the room_ID from the selected meeting
                 JsonObjectRequest findRoomObjectRequest = new JsonObjectRequest(Request.Method.POST,
                         getRoomUrl, null, new Response.Listener<JSONObject>() {
 
@@ -222,7 +227,8 @@ public class MeetingStatus extends AppCompatActivity {
 
 
 
-
+                // find the employee name (using the employee table) of the person with the
+                // employee_ID from the selected meeting
                 JsonObjectRequest findOrgObjectRequest = new JsonObjectRequest(Request.Method.POST,
                         getEmpUrl, null, new Response.Listener<JSONObject>() {
 
@@ -261,7 +267,8 @@ public class MeetingStatus extends AppCompatActivity {
 
 
 
-
+                // find the department name (using the departments table) that belongs to the
+                // department_ID of the selected meeting
                 JsonObjectRequest findDeptObjectRequest = new JsonObjectRequest(Request.Method.POST,
                         getDeptUrl, null, new Response.Listener<JSONObject>() {
 
@@ -313,6 +320,7 @@ public class MeetingStatus extends AppCompatActivity {
                 intResponseID = responseSpinner.getSelectedItemPosition() + 1;
                 dateToday = new Date();
 
+                // separate DATETIME from the database into DATE and TIME
                 calendarCalendar = Calendar.getInstance();
                 calendarCalendar.setTime(dateToday);
                 int hour = calendarCalendar.get(Calendar.HOUR_OF_DAY);
@@ -327,7 +335,7 @@ public class MeetingStatus extends AppCompatActivity {
                         + ":" + String.valueOf(minute) + ":" + String.valueOf(second));
 
 
-
+                // Send the results of the users accept/decline status to the database.
                 StringRequest request = new StringRequest(Request.Method.POST, updateAttendUrl, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -336,8 +344,7 @@ public class MeetingStatus extends AppCompatActivity {
                             if (jsonObject.names().get(0).equals("success")) {
                                 Toast.makeText(getApplicationContext(), jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), Welcome.class));
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(getApplicationContext(), "Error: " + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
                             }
 

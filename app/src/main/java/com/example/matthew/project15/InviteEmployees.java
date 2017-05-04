@@ -1,4 +1,7 @@
-
+// Description: This page is where a user would invite employees to the meeting they just created.
+// After the user selects the employees that need to be invited they would use the "Invite
+// Employees" button, all the employees that where checked would then receive an invitation for the
+// corresponding meeting.
 
 package com.example.matthew.project15;
 
@@ -145,8 +148,7 @@ public class InviteEmployees extends AppCompatActivity {
                                     if (jsonObject.names().get(0).equals("success")) {
                                         Toast.makeText(getApplicationContext(), jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(), Welcome.class));
-                                    }
-                                    else {
+                                    } else {
                                         Toast.makeText(getApplicationContext(), "Error: " + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
                                     }
 
