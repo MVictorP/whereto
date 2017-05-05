@@ -45,11 +45,11 @@ public class NewMeeting extends AppCompatActivity {
     //String getRoomUrl = "http://192.168.2.6/androidphp/getRooms.php";
     //String getEmpUrl = "http://192.168.2.6/androidphp/getEmployees.php";
     //String getMeetUrl = "http://192.168.2.6/androidphp/getCurrentMeeting.php";
-    String insertMeetUrl = "http://thewhereto.com/insertMeeting.php";
-    String getDeptUrl = "http://thewhereto.com/getDepartments.php";
-    String getRoomUrl = "http://thewhereto.com/getRooms.php";
-    String getEmpUrl = "http://thewhereto.com/getEmployees.php";
-    String getMeetUrl = "http://thewhereto.com/getCurrentMeeting.php";
+    String insertMeetUrl = "http://thewheretwo.site/insertMeeting.php";
+    String getDeptUrl = "http://thewheretwo.site/getDepartments.php";
+    String getRoomUrl = "http://thewheretwo.site/getRooms.php";
+    String getEmpUrl = "http://thewheretwo.site/getEmployees.php";
+    String getMeetUrl = "http://thewheretwo.site/getCurrentMeeting.php";
     Spinner deptSpinner, roomSpinner, empSpinner;
     TextView meetTextView;
     SharedPreferences sharedMeetID;

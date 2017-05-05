@@ -47,12 +47,12 @@ public class MeetingStatus extends AppCompatActivity {
     //String getRespUrl = "http://192.168.2.6/androidphp/getResponseTypes.php";
     //String getMeetUrl = "http://192.168.2.6/androidphp/getMeetings.php";
     //String updateAttendUrl = "http://192.168.2.6/androidphp/updateAttendance.php";
-    String getDeptUrl = "http://thewhereto.com/getDepartments.php";
-    String getRoomUrl = "http://thewhereto.com/getRooms.php";
-    String getEmpUrl = "http://thewhereto.com/getEmployees.php";
-    String getRespUrl = "http://thewhereto.com/getResponseTypes.php";
-    String getMeetUrl = "http://thewhereto.com/getMeetings.php";
-    String updateAttendUrl = "http://thewhereto.com/updateAttendance.php";
+    String getDeptUrl = "http://thewheretwo.site/getDepartments.php";
+    String getRoomUrl = "http://thewheretwo.site/getRooms.php";
+    String getEmpUrl = "http://thewheretwo.site/getEmployees.php";
+    String getRespUrl = "http://thewheretwo.site/getResponseTypes.php";
+    String getMeetUrl = "http://thewheretwo.site/getMeetings.php";
+    String updateAttendUrl = "http://thewheretwo.site/updateAttendance.php";
     SharedPreferences sharedSelMeetID, sharedUserEmail, sharedFullName, sharedUserID;
     String strUserEmail, strFullName, strShared_meetId, strJsonRoom, strJsonDept, strJsonMeet, strJsonOrg,
             strMeetingName, strMeetingDesc, strMeetingDateTime, strMeetingDuration,
